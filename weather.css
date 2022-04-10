@@ -6,6 +6,8 @@ body{
 
   justify-content: center;
   align-items: center;
+
+  font-family: sans-serif;
 }
 
 #data-container{
@@ -13,6 +15,13 @@ body{
   flex-flow: column nowrap;
 
   gap: 15px;
+}
+
+#description-gif{
+  align-self: center;
+
+  height: 250px;
+  width: 250px;
 }
 
 #weather-data{
@@ -30,6 +39,15 @@ body{
   align-items: center;
 }
 
+#location-input{
+  width: 250px;
+}
+
 #submit-btn{
+  margin-top: 15px;
+}
+
+#message{
+  align-self: flex-start;
   margin-top: 15px;
 }

@@ -6,19 +6,22 @@
     <link rel="stylesheet" href="weather.css">
   </head>
   <body>
-    <div id='data-container'>
-      <div id='weather-data'>
-        <img src='#' alt='' id='weather-icon'>
-        <data id='temp-data' value='c'></data>
-        <button id='unit-toggle' type='button' name='unit-toggle'>C° / F°</button>
+      <div id='data-container'>
+        <img id='description-gif' src='' alt=''>
+        <div id='weather-data'>
+          <img src='#' alt='' id='weather-icon'>
+          <data id='temp-data' value='c'></data>
+          <button id='unit-toggle' type='button' name='unit-toggle'>C° / F°</button>
+        </div>
+        <form id='location-form'>
+          <div id='location-interface'>
+            <label for='location-input'>Enter Location: </label>
+            <input type='text' id='location-input' name='location-input' value=''>
+            <input type='submit' id='submit-btn' name='submit-btn' value='Enter'>
+          </div>
+          <p id='message'></p>
+        </form>
       </div>
-      <form id='location-form'>
-        <label for='location-input'></label>
-        <input type='text' id='location-input' name='location-input' value='Enter Location'>
-        <input type='submit' id='submit-btn' name='submit-btn' value='Enter'>
-        <p id='error-message'></p>
-      </form>
-    </div>
     <script type='text/javascript' src='index.js'></script>
   </body>
 </html>

@@ -1,6 +1,8 @@
 
 let weatherPromise;
 let dataElement = document.querySelector('#temp-data');
+let descriptionGif = document.querySelector('#description-gif');
+let message = document.querySelector('#message');
 
 async function getWeatherData(locationInput){
 
@@ -18,7 +20,17 @@ async function getWeatherData(locationInput){
   let weatherCelsius = Math.round(weatherKelvin - 273.15);
   let weatherFahrenheit = Math.round(weatherKelvin * (9/5) - 459.67);
 
-  return {weatherCelsius, weatherFahrenheit};
+  let weatherDescription = data.weather[0].description;
+
+  return {weatherCelsius, weatherFahrenheit, weatherDescription};
+}
+
+async function getWeatherGif(searchQuery){
+  let apiKey = 'JAc48hiyLDmFcTq62zehQURZ3Q138xAA';
+  let response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=${apiKey}&s=${searchQuery}`);
+
+  let json = await response.json();
+  return json.data.images.original.url;
 }
 
 let formElement = document.querySelector('#location-form');
@@ -26,22 +38,31 @@ formElement.addEventListener('submit', (e) => {
   //prevent the default behavior of refreshing the page
   e.preventDefault();
 
+  descriptionGif.src = 'loading-gif.webp';
+
   let locationInputElement = document.querySelector('#location-input');
 
   weatherPromise = getWeatherData(locationInputElement.value);
 
   weatherPromise.then((data) => {
     dataElement.textContent = data.weatherCelsius + ' C°';
+    message.textContent = 'Weather Description: ' + data.weatherDescription;
   }).catch((err) => {
     dataElement.textContent = '';
-
-    let errorMessage = document.querySelector('#error-message');
-    errorMessage.textContent = err;
+    message.textContent = err;
   });
+
+  getWeatherGif(locationInputElement.value).then((data) => {
+    descriptionGif.src = data;
+  })
 });
 
 let UnitToggleButton = document.querySelector('#unit-toggle');
 UnitToggleButton.addEventListener('click', () => {
+
+  if(!weatherPromise){
+    return;
+  }
 
   weatherPromise.then((data) => {
     if(dataElement.value === 'c'){
@@ -52,6 +73,6 @@ UnitToggleButton.addEventListener('click', () => {
       dataElement.textContent = data.weatherCelsius + ' C°';
     }
   }).catch((err) => {
-    
+
   });
 });
