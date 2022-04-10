@@ -3,8 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>Weather App</title>
+    <link rel="stylesheet" href="weather.css">
   </head>
   <body>
-    <script type="text/javascript" src="index.js"></script>
+    <div id='data-container'>
+      <div id='weather-data'>
+        <img src='#' alt='' id='weather-icon'>
+        <data id='temp-data' value='c'></data>
+        <button id='unit-toggle' type='button' name='unit-toggle'>C° / F°</button>
+      </div>
+      <form id='location-form'>
+        <label for='location-input'></label>
+        <input type='text' id='location-input' name='location-input' value='Enter Location'>
+        <input type='submit' id='submit-btn' name='submit-btn' value='Enter'>
+        <p id='error-message'></p>
+      </form>
+    </div>
+    <script type='text/javascript' src='index.js'></script>
   </body>
 </html>

@@ -1,0 +1,35 @@
+body{
+  height: 90vh;
+
+  display: flex;
+  flex-flow: column nowrap;
+
+  justify-content: center;
+  align-items: center;
+}
+
+#data-container{
+  display: flex;
+  flex-flow: column nowrap;
+
+  gap: 15px;
+}
+
+#weather-data{
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  align-items: center;
+
+  gap:15px;
+}
+
+#location-form{
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+#submit-btn{
+  margin-top: 15px;
+}
